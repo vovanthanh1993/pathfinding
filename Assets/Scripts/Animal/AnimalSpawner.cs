@@ -236,7 +236,9 @@ public class AnimalSpawner : MonoBehaviour
             }
             
             Vector3 spawnPosition = spawnPoints[spawnIndex].position;
-            GameObject animal = Instantiate(prefab, spawnPosition, Quaternion.identity);
+            // Set rotation y = 180 khi spawn
+            Quaternion spawnRotation = Quaternion.Euler(0, 180, 0);
+            GameObject animal = Instantiate(prefab, spawnPosition, spawnRotation);
             
             // Đảm bảo animal có AnimalItem component với đúng animalType
             AnimalItem animalItem = animal.GetComponent<AnimalItem>();
@@ -316,7 +318,9 @@ public class AnimalSpawner : MonoBehaviour
             AnimalType randomAnimalType = availableAnimalTypes[randomPrefabIndex];
             
             Vector3 spawnPosition = spawnPoints[index].position;
-            GameObject animal = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
+            // Set rotation y = 180 khi spawn
+            Quaternion spawnRotation = Quaternion.Euler(0, 180, 0);
+            GameObject animal = Instantiate(randomPrefab, spawnPosition, spawnRotation);
             
             // Đảm bảo animal có AnimalItem component với đúng animalType
             AnimalItem animalItem = animal.GetComponent<AnimalItem>();

@@ -399,9 +399,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ab5d1ca14830f44ba921192bb97c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalType: 7
+  animalType: 6
   collectEffect: {fileID: 0}
   collectSoundName: animal_collect
+  pickupAnimationDuration: 0.5
+  finalScale: 0.5
+  flyHeight: 2
+  dropAnimationDuration: 0.3
+  animator: {fileID: 0}
+  jumpTriggerParameter: Jump
+  jumpInterval: 2
 --- !u!54 &8569200791984008242
 Rigidbody:
   m_ObjectHideFlags: 0

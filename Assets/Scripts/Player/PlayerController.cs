@@ -308,14 +308,18 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-        // Thả animal tại checkpoint
-        carriedAnimal.DropAnimalAtCheckpoint(checkpointPosition);
+        // Lưu animal type trước khi thả
+        AnimalType animalType = carriedAnimal.AnimalType;
         
-        // Tính điểm khi thả tại checkpoint
-        if (QuestManager.Instance != null)
+        // Thả animal tại checkpoint với callback để tính điểm sau khi animation hoàn thành
+        carriedAnimal.DropAnimalAtCheckpoint(checkpointPosition, () =>
         {
-            QuestManager.Instance.OnAnimalCollected(carriedAnimal.AnimalType);
-        }
+            // Tính điểm khi animation thả animal hoàn thành
+            if (QuestManager.Instance != null)
+            {
+                QuestManager.Instance.OnAnimalCollected(animalType);
+            }
+        });
         
         // Reset carried animal
         carriedAnimal = null;

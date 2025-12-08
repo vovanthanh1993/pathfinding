@@ -301,4 +301,12 @@ public class AudioManager : MonoBehaviour
     public void PlayLoseSound() {
         PlaySound("se_pve_lose");
     }
+
+    public void PlayCollectSound() {
+        PlaySound("se_collect");
+    }
+
+    public void PlayCheckpointSound() {
+        PlaySound("se_checkpoint");
+    }
 }

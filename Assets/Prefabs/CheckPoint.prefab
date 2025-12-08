@@ -48580,7 +48580,6 @@ GameObject:
   - component: {fileID: 2631728987762205317}
   - component: {fileID: 270279534380328897}
   - component: {fileID: 9151270037337959629}
-  - component: {fileID: 700364954345144046}
   - component: {fileID: 2025636693715371165}
   m_Layer: 0
   m_Name: FX_PowerUp_Coin_AA
@@ -53430,27 +53429,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!65 &700364954345144046
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5376640515520560385}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2025636693715371165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58269,9 +58247,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1634550931453652351}
   - component: {fileID: 5661616110443691690}
+  - component: {fileID: 3169602170952404026}
   m_Layer: 0
   m_Name: CheckPoint
-  m_TagString: Untagged
+  m_TagString: EndTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58304,9 +58283,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0536368ae662641ab087d8034cc77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalDropPoint: {fileID: 0}
+  parentDropPoint: {fileID: 0}
   dropEffect: {fileID: 0}
   dropSoundName: animal_drop
+--- !u!65 &3169602170952404026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253135145152428163}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1217842, y: 1.7652636, z: 1.0858994}
+  m_Center: {x: 0.060892224, y: 0.38263178, z: -0.042949677}
 --- !u!1 &8973248245313357900
 GameObject:
   m_ObjectHideFlags: 0
@@ -58324,7 +58324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7432892443791852062
 Transform:
   m_ObjectHideFlags: 0

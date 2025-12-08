@@ -74,23 +74,23 @@ public class QuestDataManager : MonoBehaviour
         // Tạo objectives cho animal collection với độ khó tăng dần theo level
         List<QuestObjective> objectives = new List<QuestObjective>();
         
-        // Số lượng objectives (loại animal khác nhau) tăng dần theo level
-        int objectivesCount = 1;
+        // Số lượng objectives (loại animal khác nhau) - đảm bảo ít nhất 2 loại
+        int objectivesCount = 2; // Mặc định ít nhất 2 loại
         if (questId <= 10)
         {
-            objectivesCount = 1;
+            objectivesCount = 2; // Đảm bảo ít nhất 2 loại
         }
         else if (questId <= 20)
         {
-            objectivesCount = Random.Range(1, 3);
+            objectivesCount = Random.Range(2, 4); // 2-3 loại
         }
         else if (questId <= 30)
         {
-            objectivesCount = Random.Range(2, 4);
+            objectivesCount = Random.Range(2, 4); // 2-3 loại
         }
         else
         {
-            objectivesCount = Random.Range(2, 4);
+            objectivesCount = Random.Range(2, 5); // 2-4 loại
         }
         
         // Xác định phạm vi AnimalType dựa trên level (độ khó tăng dần)
@@ -166,6 +166,19 @@ public class QuestDataManager : MonoBehaviour
             maxRequiredAmount = 4;
         }
         
+        // Đảm bảo có đủ loại animal để chọn
+        if (availableAnimalTypes.Count < objectivesCount)
+        {
+            Debug.LogWarning($"QuestDataManager: Quest {questId} chỉ có {availableAnimalTypes.Count} loại animal khả dụng, nhưng cần {objectivesCount}. Giảm xuống {availableAnimalTypes.Count} loại.");
+            objectivesCount = availableAnimalTypes.Count;
+        }
+        
+        // Đảm bảo ít nhất 2 loại animal
+        if (objectivesCount < 2 && availableAnimalTypes.Count >= 2)
+        {
+            objectivesCount = 2;
+        }
+        
         // Tạo objectives ngẫu nhiên
         for (int i = 0; i < objectivesCount && availableAnimalTypes.Count > 0; i++)
         {
@@ -183,6 +196,28 @@ public class QuestDataManager : MonoBehaviour
                 requiredAmount = requiredAmount
             };
             objectives.Add(objective);
+        }
+        
+        // Validation: Đảm bảo quest có ít nhất 2 loại animal
+        if (objectives.Count < 2)
+        {
+            Debug.LogError($"QuestDataManager: Quest {questId} chỉ có {objectives.Count} loại animal, không đủ 2 loại! Vui lòng kiểm tra lại availableAnimalTypes.");
+            // Nếu không đủ, thử thêm loại animal nếu còn available
+            while (objectives.Count < 2 && availableAnimalTypes.Count > 0)
+            {
+                int randomIndex = Random.Range(0, availableAnimalTypes.Count);
+                AnimalType randomAnimalType = availableAnimalTypes[randomIndex];
+                availableAnimalTypes.RemoveAt(randomIndex);
+                
+                int requiredAmount = Random.Range(minRequiredAmount, maxRequiredAmount + 1);
+                
+                QuestObjective objective = new QuestObjective
+                {
+                    animalType = randomAnimalType,
+                    requiredAmount = requiredAmount
+                };
+                objectives.Add(objective);
+            }
         }
         
         questData.objectives = objectives.ToArray();

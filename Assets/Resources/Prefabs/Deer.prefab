@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 8690191208541474072}
   - component: {fileID: -7019700294348046000}
   - component: {fileID: -4334862457566348950}
+  - component: {fileID: -4219445292241673236}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -489,3 +490,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4219445292241673236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8777474578988642880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ab5d1ca14830f44ba921192bb97c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalType: 7
+  collectEffect: {fileID: 0}
+  collectSoundName: animal_collect
+  pickupAnimationDuration: 0.5
+  finalScale: 0.5
+  flyHeight: 2
+  dropAnimationDuration: 0.3
+  animator: {fileID: 0}
+  jumpTriggerParameter: Jump
+  jumpInterval: 2

@@ -74,6 +74,13 @@ MonoBehaviour:
   animalType: 2
   collectEffect: {fileID: 0}
   collectSoundName: animal_collect
+  pickupAnimationDuration: 0.5
+  finalScale: 0.5
+  flyHeight: 2
+  dropAnimationDuration: 0.3
+  animator: {fileID: 0}
+  jumpTriggerParameter: Jump
+  jumpInterval: 2
 --- !u!54 &-4572329726904513339
 Rigidbody:
   m_ObjectHideFlags: 0
