@@ -103,7 +103,7 @@ public class QuestManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Được gọi khi player collect một animal
+    /// Được gọi khi player thả animal tại checkpoint
     /// </summary>
     public void OnAnimalCollected(AnimalType animalType)
     {
@@ -120,7 +120,8 @@ public class QuestManager : MonoBehaviour
             GUIPanel.Instance.objectivesPanelComponent.UpdateProgress();
         }
 
-        // Không tự động hoàn thành quest, phải đến endgate mới hoàn thành
+        // Kiểm tra xem đã hoàn thành quest chưa sau mỗi lần thả animal
+        CheckQuestComplete();
     }
     
     /// <summary>

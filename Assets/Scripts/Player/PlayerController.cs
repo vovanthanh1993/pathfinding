@@ -14,6 +14,13 @@ public class PlayerController : MonoBehaviour
     [Header("Camera Settings")]
     [SerializeField] private Transform camTarget;
 
+    [Header("Animal Collection")]
+    [Tooltip("Điểm để hiển thị animal khi đã nhặt")]
+    [SerializeField] private Transform animalPoint;
+    
+    // Animal đang được mang theo (chỉ 1 con)
+    private AnimalItem carriedAnimal = null;
+
     [Header("Spawn Settings")]
     [Tooltip("Vị trí spawn point (nếu null sẽ dùng vị trí ban đầu của player)")]
     [SerializeField] private Transform spawnPoint;
@@ -47,6 +54,24 @@ public class PlayerController : MonoBehaviour
         
         playerAnimation = GetComponent<PlayerAnimation>();
         playerHealth = GetComponent<PlayerHealth>();
+        
+        // Tự động tìm AnimalPoint nếu chưa được assign
+        if (animalPoint == null)
+        {
+            animalPoint = transform.Find("AnimalPoint");
+            if (animalPoint == null)
+            {
+                // Tìm trong tất cả các con
+                foreach (Transform child in transform)
+                {
+                    if (child.name == "AnimalPoint")
+                    {
+                        animalPoint = child;
+                        break;
+                    }
+                }
+            }
+        }
         
         // Đảm bảo CharacterController tồn tại
         if (characterController == null)
@@ -227,6 +252,13 @@ public class PlayerController : MonoBehaviour
         {
             ShowVictory();
         }
+        
+        // Xử lý checkpoint
+        Checkpoint checkpoint = other.GetComponent<Checkpoint>();
+        if (checkpoint != null)
+        {
+            checkpoint.OnPlayerEnter(this);
+        }
     }
     
     /// <summary>
@@ -237,11 +269,72 @@ public class PlayerController : MonoBehaviour
     {
         // Kiểm tra va chạm với animal
         AnimalItem animalItem = hit.gameObject.GetComponent<AnimalItem>();
-        if (animalItem != null)
+        if (animalItem != null && carriedAnimal == null && !animalItem.IsPickedUp && !animalItem.IsCollected)
         {
-            // Gọi method collect từ animal
-            animalItem.CollectAnimal();
+            // Chỉ lượm được nếu chưa có animal nào đang mang
+            // Lấy AnimalPoint
+            Transform animalPointTransform = GetAnimalPoint();
+            
+            // Lượm animal (chưa tính điểm)
+            animalItem.PickupAnimal(animalPointTransform);
+            
+            // Thông báo cho PlayerController
+            PickupAnimal(animalItem);
         }
+    }
+    
+    /// <summary>
+    /// Lượm animal (chỉ lượm được 1 con) - được gọi từ AnimalItem
+    /// </summary>
+    public void PickupAnimal(AnimalItem animalItem)
+    {
+        if (carriedAnimal != null)
+        {
+            Debug.Log("Đã có animal đang mang theo, không thể lượm thêm!");
+            return;
+        }
+        
+        carriedAnimal = animalItem;
+    }
+    
+    /// <summary>
+    /// Thả animal tại checkpoint
+    /// </summary>
+    public void DropAnimalAtCheckpoint(Transform checkpointPosition)
+    {
+        if (carriedAnimal == null)
+        {
+            Debug.Log("Không có animal để thả!");
+            return;
+        }
+        
+        // Thả animal tại checkpoint
+        carriedAnimal.DropAnimalAtCheckpoint(checkpointPosition);
+        
+        // Tính điểm khi thả tại checkpoint
+        if (QuestManager.Instance != null)
+        {
+            QuestManager.Instance.OnAnimalCollected(carriedAnimal.AnimalType);
+        }
+        
+        // Reset carried animal
+        carriedAnimal = null;
+    }
+    
+    /// <summary>
+    /// Kiểm tra xem có đang mang animal không
+    /// </summary>
+    public bool HasCarriedAnimal()
+    {
+        return carriedAnimal != null;
+    }
+    
+    /// <summary>
+    /// Lấy animal đang mang theo
+    /// </summary>
+    public AnimalItem GetCarriedAnimal()
+    {
+        return carriedAnimal;
     } 
     
     /// <summary>
@@ -333,6 +426,14 @@ public class PlayerController : MonoBehaviour
     public GameObject GetModel()
     {
         return model;
+    }
+
+    /// <summary>
+    /// Lấy AnimalPoint transform
+    /// </summary>
+    public Transform GetAnimalPoint()
+    {
+        return animalPoint;
     }
 
     #endregion

@@ -63,16 +63,6 @@ public class InputManager : MonoBehaviour
         return InputSystem.Player.Move.ReadValue<Vector2>();
     }
 
-    public bool IsShooting()
-    {
-        return InputSystem.Player.Attack.triggered;
-    }
-
-    public bool IsZoom()
-    {
-        return InputSystem.Player.Zoom.triggered;
-    }
-
     public Vector2 InputLookVector()
     {
         // Nếu không restrict, trả về input bình thường

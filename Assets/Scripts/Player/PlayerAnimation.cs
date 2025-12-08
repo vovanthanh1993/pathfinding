@@ -4,8 +4,6 @@ public class PlayerAnimation : MonoBehaviour
 {
     public Animator animator;
     public string speedParameter = "Speed";
-    public string shootTriggerParameter = "Shoot";
-    public string aimParameter = "Aiming";
     public string dieTriggerParameter = "Die";
 
     /// <summary>
@@ -20,33 +18,6 @@ public class PlayerAnimation : MonoBehaviour
         if (!string.IsNullOrEmpty(speedParameter))
         {
             animator.SetFloat(speedParameter, speed);
-        }
-    }
-
-    /// <summary>
-    /// Được gọi từ PlayerController để trigger animation bắn
-    /// </summary>
-    public void SetShoot()
-    {
-        if (animator == null) return;
-
-        if (!string.IsNullOrEmpty(shootTriggerParameter))
-        {
-            animator.SetTrigger(shootTriggerParameter);
-        }
-    }
-
-    /// <summary>
-    /// Được gọi từ PlayerController để set animation aim
-    /// </summary>
-    /// <param name="isAiming">Nhân vật có đang aim không</param>
-    public void SetAim(bool isAiming)
-    {
-        if (animator == null) return;
-
-        if (!string.IsNullOrEmpty(aimParameter))
-        {
-            animator.SetBool(aimParameter, isAiming);
         }
     }
 
