@@ -6,7 +6,7 @@ public class HomePanel : MonoBehaviour
 {
     public Button upgradeBtn;
     public Button playBtn;
-    public TextMeshProUGUI meatText;
+    public TextMeshProUGUI coinText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI damageText;
     public TextMeshProUGUI speedText;
@@ -44,15 +44,15 @@ public class HomePanel : MonoBehaviour
     /// </summary>
     public void UpdateRewardDisplay()
     {
-        if (meatText != null)
+        if (coinText != null)
         {
             if (PlayerDataManager.Instance != null && PlayerDataManager.Instance.playerData != null)
             {
-                meatText.text = PlayerDataManager.Instance.playerData.totalReward.ToString();
+                coinText.text = PlayerDataManager.Instance.playerData.totalReward.ToString();
             }
             else
             {
-                meatText.text = "0";
+                coinText.text = "0";
             }
         }
     }

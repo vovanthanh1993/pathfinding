@@ -2,19 +2,24 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Fog_Mat
   m_Shader: {fileID: 4800000, guid: dc4a231338e15834faad19cdcaff9a6d, type: 3}
-  m_ShaderKeywords: 
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -30,6 +35,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _FogIntensity: 1
     - _FogMaxIntensity: 1
@@ -38,4 +44,6 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color0: {r: 0.07136677, g: 0.44117647, b: 0.41057152, a: 0}
-    - _FogColor: {r: 0.32115054, g: 0.5868482, b: 0.8088235, a: 0}
+    - _FogColor: {r: 0.32156864, g: 0.5882353, b: 0.80784315, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

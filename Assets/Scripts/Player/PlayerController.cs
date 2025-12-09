@@ -343,9 +343,10 @@ public class PlayerController : MonoBehaviour
     
     /// <summary>
     /// Quay về spawn point
-    /// </summary>
+    /// </summary>s
     private void ReturnToSpawnPoint()
     {
+        AudioManager.Instance.PlayHurtSound();
         // Tắt CharacterController tạm thời để teleport
         if (characterController != null)
         {

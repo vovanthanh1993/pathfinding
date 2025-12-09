@@ -1320,7 +1320,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.093647845, z: 0, w: 0.9956054}
   m_LocalPosition: {x: 8.19, y: 0.61, z: 5.11}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6560530365152676753}
@@ -1359,6 +1359,7 @@ MonoBehaviour:
   moveSpeed: 3
   rotationSpeed: 10
   camTarget: {fileID: 6840423621618699383}
+  animalPoint: {fileID: 0}
   spawnPoint: {fileID: 0}
   canReceiveInput: 1
   isDisable: 0
